@@ -14,6 +14,9 @@ const createCanva = (x, y) => {
             let grid = document.createElement("div");
             grid.classList.add(`grid`);
             grid.id = `grid${i}${j}`;
+            grid.style.width = `calc(90vmin / ${x})`
+            grid.style.height = `calc(90vmin / ${y})`
+            grid.style.opacity = 0;
             row.appendChild(grid);
         }
     }
@@ -21,7 +24,9 @@ const createCanva = (x, y) => {
 
 container.addEventListener("mouseover", (e) => {
     if (e.target.classList.contains("grid")) {
-        e.target.style.backgroundColor = "black";
+        const randomColor = "#" + Math.floor(Math.random() * 16777215).toString(16);
+        e.target.style.backgroundColor = randomColor;
+        e.target.style.opacity = parseFloat(e.target.style.opacity) + 0.1;
     }
 })
 
